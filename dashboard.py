@@ -16,6 +16,8 @@ end_date = st.sidebar.date_input('End Date')
 # Download data and handle potential errors
 try:
     data = yf.download(ticker, start=start_date, end=end_date, progress=False)
+    data = data.flatten()  # Converts to 1D if the data shape is (251, 1)
+
 
     # Check if the DataFrame is empty
     if data.empty:
